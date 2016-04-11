@@ -3,9 +3,13 @@ from django.db import models
 
 # Create your models here.
 class ItemList(models.Model):
-    name = models.CharField(max_length=256)
+    creator = models.CharField(max_length=256)
+    name = models.CharField(max_length=512)
     group = models.CharField(max_length=128)
     link = models.CharField(max_length=1024)
+
+    def __str__(self):
+        return self.creator + "@" + self.link
 
 class Item(models.Model):
     item_list = models.ForeignKey(ItemList, on_delete=models.CASCADE)
